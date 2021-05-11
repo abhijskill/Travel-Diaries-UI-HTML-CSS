@@ -1,4 +1,4 @@
-			TRAVEL DIARIES
+					TRAVEL DIARIES
 			--------------------------------------------
 
 Introduction:-
@@ -16,7 +16,7 @@ Functionalities Available:-
 
 
 ADMIN				      USER
------------------				      ---------------
+-----------------		---------------
 	              	
 Can see all trips			Can see all trips
 	                	
