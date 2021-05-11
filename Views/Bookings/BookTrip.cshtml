@@ -1,0 +1,166 @@
+﻿@model TravelDiariesApp.Models.Trip
+
+@{
+    ViewBag.Title = "BookTrip";
+}
+
+<style>
+    .demo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*margin-top: 0.5cm;*/
+        margin-left: -15px;
+        margin-right: -15px;
+        margin-top: 0px;
+        height: 110px;
+        /*text-shadow: 4px 4px 5px red;*/
+        background-color:darkslateblue;
+        color: white;
+        text-align: center;
+    }
+    /*h2 {
+        margin-top: 1.5cm;
+        text-align: center;
+        color: darkslateblue;
+    }*/
+
+    .dl-horizontal {
+        font-size: 20px;
+        margin-left: 550px;
+        margin-top: 1.5cm;
+        color: #455A64;
+    }
+
+    body {
+        background-position:top center;
+        background-image: url('../../Content/Images/crud3jpg.jpg');
+    }
+
+    /*.form-control {
+        background: #fff;
+        font-family: Times New Roman, Times, serif;
+        font-size: 11pt;
+        padding: 3px;
+        border-top: 1px solid #CCCCCC;
+        border-left: 1px solid #CCCCCC;
+        border-right: 1px solid #999999;
+        border-bottom: 1px solid #999999;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+    }*/
+
+    input[type=submit] {
+        padding: 5px 15px;
+        background: #ccc;
+        border: 0 none;
+        cursor: pointer;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        background-color: darkslateblue;
+        color: white;
+    }
+</style>
+
+<div class="demo">
+    <h2>Please Confirm your Booking</h2>
+</div>
+
+
+<body>
+
+    <div>
+
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Place)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Place)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Duration)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Duration)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TravelMode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TravelMode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Food)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Food)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StayCost)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StayCost)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FoodCost)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FoodCost)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TravellingCost)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TravellingCost)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalCost)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TotalCost)
+            </dd>
+
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div style="margin-left: 650px" >
+                <input type="submit" value="Save and continue" class="btn btn-default" /> 
+                
+            </div>
+            <div>
+                <button class="btn-primary btn-lg" style="background-color:darkslateblue;font-family:'Book Antiqua';border:0px;margin-left:685px;height:32px;font-size:14px;margin-top:30px">
+                    
+                    @Html.ActionLink("Cancel", "Index","Trips", null, new { style = "color:white" })
+
+                </button>
+            </div>
+        }
+    </div>
+    </body>

@@ -1,0 +1,100 @@
+﻿@model IEnumerable<TravelDiariesApp.Models.Bookings>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<style>
+    body {
+       /*margin-top:6cm;*/
+        background-image: url('../../Content/Images/bookbg.jpg');
+    }
+    h2{
+        margin-left:820px;
+        font-family:Calibri;
+        margin-top:1.5cm;
+        
+    }
+</style>
+<body>
+    <table class="table" style="width:560px;margin-left:690px;margin-top:0.5cm;">
+        <h2><b>BOOKING INFORMATION</b></h2>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingID)
+            </th>
+            @if (Session["Role"].ToString() == "\"Admin\"")
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TripID)
+                </th>
+            }
+
+            <th>
+                @Html.DisplayNameFor(model => model.Place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            @if (Session["Role"].ToString() == "\"User\"")
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+            }
+                <th></th>
+            </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingID)
+                </td>
+                @if (Session["Role"].ToString() == "\"Admin\"")
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TripID)
+                    </td>
+                }
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Place)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                @if (Session["Role"].ToString() == "\"User\"")
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                }
+                @*<td>
+                    @Html.ActionLink("Details", "Details", "Trips", new { id = item.TripID }, null)
+                </td>*@
+            </tr>
+        }
+
+
+    </table>
+    <div style="margin-left: 700px;">
+        <button class="btn-primary btn-lg" style="background-color:white;
+        font-family: 'Book Antiqua';
+        border: solid 1px black;
+        
+        height: 40px;
+        font-size: 14px;">
+            @Html.ActionLink("Back", "Dashboard", "Users",null,new { style="color:black"})
+        </button>
+    </div>
+   
+</body>

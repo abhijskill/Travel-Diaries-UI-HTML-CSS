@@ -1,0 +1,260 @@
+﻿@model TravelDiariesApp.Models.UserMaster
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+        
+    .mySlides {
+        display: none;
+    }
+
+    .wrapper {
+        text-align: center;
+    }
+
+    .centered {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .button {
+        position: absolute;
+        top: 50%;
+    }
+
+    body {
+        height: 100vh;
+        text-align: center;
+        
+    }
+    /*Trigger Button*/
+    .login-trigger {
+        font-weight: bold;
+        color: black;
+        background: linear-gradient(to bottom right, grey, white);
+        padding: 15px 30px;
+        border-radius: 30px;
+        position: relative;
+        top: 50%;
+    }
+
+
+
+    /*Modal*/
+    h4 {
+        font-weight: bold;
+        color: white;
+    }
+
+
+
+    .close {
+        color: cornflowerblue;
+        transform: scale(1.2)
+    }
+
+
+
+    .modal-content {
+        font-weight: bold;
+        background: linear-gradient(to bottom right,cornflowerblue,white);
+    }
+
+
+
+    .form-control {
+        margin: 1em 0;
+    }
+
+
+
+        .form-control:hover, .form-control:focus {
+            box-shadow: none;
+            border-color: cornflowerblue;
+        }
+
+
+
+    .username, .password {
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        border-bottom: 2px solid #eee;
+        padding-left: 0;
+        font-weight: normal;
+        background: transparent;
+    }
+
+
+
+    .form-control::-webkit-input-placeholder {
+        color: white;
+    }
+
+
+
+    .form-control:focus::-webkit-input-placeholder {
+        font-weight: bold;
+        color: white;
+    }
+
+
+
+    .login {
+        padding: 6px 20px;
+        border-radius: 20px;
+        background: cornflowerblue;
+        border: 2px solid cornflowerblue;
+        color: white;
+        font-weight: bold;
+        transition: all .5s;
+        margin-top: 1em;
+    }
+
+
+
+        .login:hover {
+            background: cornflowerblue;
+            color: white;
+        }
+</style>
+<body>
+
+    <div class="container">
+        <div class="container" style="width:100%">
+
+
+            <img class="mySlides" src="~/Content/Images/ss5.jpg" style="width:100%;height:650px">
+            <img class="mySlides" src="~/Content/Images/ss6.jpg" style="width:100%;height:650px">
+            <img class="mySlides" src="~/Content/Images/ss1.jpg" style="width:100%;height:650px">
+            <img class="mySlides" src="~/Content/Images/ss2.jpg" style="width:100%;height:650px">
+
+
+            <div class="centered">
+                <h1 style="color:black;text-decoration-style:wavy;font-family:Algerian;margin-bottom:2cm"><b>“The journey of a thousand miles begins with a single step!”</b></h1>
+
+                <button style="margin-right:1cm;background:linear-gradient(to bottom right,grey,black);font-family:'Lucida Calligraphy';border-color:black;color:cornsilk" class="btn-primary btn-lg">Travel before you run out of time &raquo;</button>
+            </div>
+            <div>
+                <a class="login-trigger" href="#" data-target="#login" data-toggle="modal">Login</a>
+                <div id="login" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+
+
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <button data-dismiss="modal" class="close">&times;</button>
+                                <h4>Login</h4>
+                                @*<form>
+                                    <input type="text" name="username" class="username form-control" placeholder="Username" />
+                                    <input type="password" name="password" class="password form-control" placeholder="password" />
+                                    <input class="btn login" type="submit" value="Login" />
+                                </form>*@
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        
+                                        <hr />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            @Html.Label("Username", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.Label("Password", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.PasswordFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                
+                                                <input type="submit" value="Login" class="btn btn-default" />
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        var slideIndex = 0;
+        carousel();
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > x.length) { slideIndex = 1 }
+            x[slideIndex - 1].style.display = "block";
+            setTimeout(carousel, 3000); // Change image every 2 seconds
+        }
+        </script>
+
+</body>
+<hr style="color:black" />
+<div style="align-content:center;margin-top:1cm">
+    <div class="wrapper">
+        <p>
+            <img src="~/Content/Images/cartoon.png" /><a class="btn btn-primary btn-lg" style="align-self:center;background-color:black;margin-left:5cm">India's No.1 trip planner &raquo;</a>
+
+        </p>
+    </div>
+
+</div>
+<br><br><br>
+<hr style="color:black" />
+<div class="row" style="margin-top:4cm;margin-bottom:2cm;color:white">
+    <div>
+        <h1 style="color: white; font-family:'Times New Roman', Times, serif;margin-bottom:1cm;text-decoration:underline">Popular Trips</h1>
+    </div>
+
+    <div class="col-md-4">
+        <img src="~/Content/Images/goa.jpg" />
+        <h2>Amazing Goa</h2>
+        <h4>3 Nights 4 Days</h4>
+        <p>
+            A flight and hotel only package. Customize the package
+            activities to make your holiday memorable! Dear beach lovers,
+            your next Goa trip is going to be an unforgettable one!
+        </p>
+        <p><a class="btn-primary btn-lg" style="margin-right:2cm">Rs.12000</a><a class="btn btn-default">Special Discount &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <img src="~/Content/Images/manali.jpg" />
+        <h2>Touristic Manali</h2>
+        <h4>4 Nights 5 Days</h4>
+        <p style="margin-bottom:1cm">Spend some time,lost yourself and Get the peace you wanted in Mountains of Manali..Package available with flight and hotel options for all dates!</p>
+        <p><a class="btn-primary btn-lg" style="margin-right:2cm;margin-bottom:1cm">Rs.9000</a><a class="btn btn-default">Special Discount &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <img src="~/Content/Images/kerala.jpg" />
+        <h2>Soothing Kerala</h2>
+        <h4>3 Nights 4 Days</h4>
+        <p style="margin-bottom:1cm">
+            Escape the city; head out to the scenic hills and be amazed by breathtaking views of Munnar and Thekkady. Visit tea gardens, sanctuaries and more.
+        </p>
+        <p><a class="btn-primary btn-lg" style="margin-right:2cm;margin-bottom:1cm">Rs.10000</a><a class="btn btn-default">Special Discount &raquo;</a></p>
+    </div>
+</div>

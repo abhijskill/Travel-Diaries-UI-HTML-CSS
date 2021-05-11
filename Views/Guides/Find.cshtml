@@ -1,0 +1,89 @@
+﻿@model IEnumerable<TravelDiariesApp.Models.Guide>
+
+@{
+    ViewBag.Title = "Find";
+}
+
+
+<style>
+    body {
+        /*margin-top:6cm;*/
+        background-image: url('../../Content/Images/bookbg.jpg');
+    }
+
+    h2 {
+        margin-left: 820px;
+        font-family: Calibri;
+        margin-top: 1.5cm;
+    }
+</style>
+<body>
+    <h2><b><u>GUIDES INFORMATION</u></b></h2>
+
+    @using (Html.BeginForm())
+    {
+        <p style="margin-left: 690px;margin-top: 1cm">
+            Place: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+    <div style="margin-left: 690px;">
+        @Html.ActionLink("All Guides", "Find", "Guides")
+    </div>
+    <table class="table" style="width:560px;margin-left:690px;margin-top:0.5cm;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fare)
+            </th>
+            <th>
+                @Html.DisplayName("Exp")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Place)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fare)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Experience)
+                    
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    <div style="margin-left: 700px;">
+        <button class="btn-primary btn-lg" style="background-color:white;
+        font-family: 'Book Antiqua';
+        border: solid 1px black;
+
+        height: 40px;
+        font-size: 14px;">
+            @Html.ActionLink("Back", "Dashboard", "Users",null,new { style="color:black"})
+        </button>
+    </div>
+    
+</body>
+

@@ -1,0 +1,52 @@
+			TRAVEL DIARIES
+			--------------------------------------------
+
+Introduction:-
+----------------------------------
+
+Travel diaries is a trip booking system that enables a user to book a trip along with a travel guide.
+
+This web application is based on 3 tier architecture. 
+
+The web application is provided with 2 roles viz. Admin and user.
+
+
+Functionalities Available:-
+--------------------------------------------------------------------
+
+
+ADMIN				      USER
+-----------------				      ---------------
+	              	
+Can see all trips			Can see all trips
+	                	
+Can create or delete any trip		Can see details of a trip
+	                	
+Can edit existing trip		Can book a trip
+								               
+	                   	
+Can see details of a trip		Can see his/her own bookings
+	                	
+Can see booking details  of all users	Can see guides information
+	                	
+See guides information
+
+
+Technologies Used:-
+-------------------------------------------------
+
+
+ASP.NET MVC 5
+WEB API 2
+ENTITY FRAMEWORK V6
+SQL SERVER 2019
+Nunit for Unit Testing Using MoQ
+
+IDEs used : -
+--------------------------
+
+  VISUAL STUDIO 2019
+  SQL SERVER MANAGEMENT STUDIO
+
+
+				

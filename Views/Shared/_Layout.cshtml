@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-image: url('../../Content/Images/bg9.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: auto;
+            background-position: center center;
+        }
+        .wrapper{
+            min-height:100%;
+            height:auto;
+            height:100%;
+            margin: 0 auto -142px;
+       }
+        .footer, .push {
+            height: 142px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div style="float:left">
+            <a class="navbar-brand" href="@Url.Action("Login", "Users")">
+                <img src="~/Content/img.png" alt="Site Logo" class="img-center" style="height:35px; width: 120px;" />
+            </a>
+        </div>
+        <div class="container">
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse" style="float:right">
+                <ul class="nav navbar-nav">
+
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (Session["token"] == null)
+                    {
+                        <li>@Html.ActionLink("SignUp", "Signup", "Users")</li>
+                        <li>@Html.ActionLink("Home", "Login", "Users")</li>
+
+
+                    }
+                    else
+                    {
+
+                        <li>@Html.ActionLink("Browse Trips", "Index", "Trips")</li>
+                        
+                       
+                            
+                            
+                            <li>@Html.ActionLink("Dashboard","Dashboard", "Users")</li>
+                        
+                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+            @*<footer>
+            <hr />
+            <p style="text-align:center">&copy; @DateTime.Now.Year - Group 2 .NET Interns</p>
+        </footer>*@
+            
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

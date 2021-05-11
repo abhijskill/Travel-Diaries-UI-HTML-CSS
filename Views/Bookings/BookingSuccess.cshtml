@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Success";
+}
+@*@Html.ActionLink("Browse more trips", "Index", "Trips")*@
+
+<style>
+    body {
+        background-position: top center;
+        background-image: url('../../Content/Images/crud3jpg.jpg');
+        /*background-image: url('../../Content/Images/bg9.jpeg');
+        margin-top: 6cm;*/
+    }
+    .success{
+        margin-left:50px;
+        margin-top:2cm;
+        text-align:center;
+        font-family:Calibri;
+        font-size:22px;
+
+    }
+
+</style>
+<body>
+
+    <div class="success">
+        <img style="height:150px;width:150px" src="~/Content/Images/thumbsup.png" />
+        <p><b>PAYMENT SUCCESSFUL</b></p>
+
+        <p>
+            <b>Thank You for choosing Travel Diaries</b>
+        </p>
+        <button class="btn-primary btn-lg" style="background-color:transparent;
+        font-family: 'Book Antiqua';
+        border: solid 1px black;
+        
+        height: 40px;
+        font-size: 16px;">
+            @Html.ActionLink("Browse more trips", "Index", "Trips",null,new {style= "color:#1A237E" })
+        </button>
+        
+    </div>
+</body>    
+

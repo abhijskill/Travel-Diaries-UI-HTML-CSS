@@ -1,0 +1,173 @@
+﻿@*@model IEnumerable<TravelDiariesApp.Models.Trip>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2 style="margin-top:2cm">Find out the best packages here!!</h2>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Place: @Html.TextBox("Place")
+            <input type="submit" value="Search" />
+        </p>
+    }
+    @Html.ActionLink("All Trips", "Index") <span> |</span>
+    @if (Session["Role"].ToString() == "\"Admin\"")
+    {
+        @Html.ActionLink("Create New Trip", "Create") <span> |</span>
+        @Html.ActionLink("All Bookings", "Index", "Bookings") <span>|</span>
+    }
+    else
+    {
+        @Html.ActionLink("My Bookings", "Index", "Bookings") <span> |</span>
+    }
+    @Html.ActionLink("Find Guides", "Find", "Guides")
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayName("Price")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Place)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalCost)
+                </td>
+                <td>
+                    @if (Session["Role"].ToString() == "\"Admin\"")
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TripID }) <span>|</span>
+                        @Html.ActionLink("Details", "Details", new { id = item.TripID }) <span>|</span>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TripID })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Details", "Details", new { id = item.TripID }) <span>|</span>
+                        @Html.ActionLink("Book Now", "BookTrip", "Bookings", new { id = item.TripID }, null)
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+
+
+
+
+
+
+@model IEnumerable<TravelDiariesApp.Models.Trip>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .demo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*margin-top: 0.5cm;*/
+        margin-left: -14px;
+        margin-right: -14px;
+        margin-top: 0px;
+        height: 110px;
+        /*text-shadow: 4px 4px 5px red;*/
+        background: linear-gradient(to bottom right,lightslategray,white);
+        color: /*#1A237E*/ darkslategrey ;
+        text-align: center;
+    }
+
+</style>
+
+<body style="background-image:none;">
+    <div class="demo">
+    <h2 style="margin-top:2cm;font-family:Calibri";><b>***GRAB THE BEST DEALS UNDER ONE ROOF***</b></h2>
+    </div>
+    <div style="height:100px;margin-right:1cm">
+        <p>
+            @if (Session["Role"].ToString() == "\"Admin\"")
+            {
+                <button class="btn-primary btn-lg" style="background-color:white;float:right">@Html.ActionLink("Create New Trip", "Create")</button>
+            }
+        </p>
+    </div>
+
+
+
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3" style="margin-bottom:1cm;background:linear-gradient(to bottom right,lightslategray,white);border-radius:8px;margin-right:0.5cm;height:400px;width:350px;">
+            <div style="margin-top:0.5cm;">
+                <img src="~/Content/Images/Images/@Html.ValueFor(modelItem => item.Place)/gujrat.jpg" onerror="imgError(this)" />
+                <img src="~/Content/Images/Images/@Html.ValueFor(modelItem => item.Place)/munnar.jpg" onerror="imgError(this)" />
+                <img src="~/Content/Images/Images/@Html.ValueFor(modelItem => item.Place)/goa.jpg" onerror="imgError(this)" />
+                <img src="~/Content/Images/Images/@Html.ValueFor(modelItem => item.Place)/manali.jpg" onerror="imgError(this)" />
+                <img src="~/Content/Images/Images/@Html.ValueFor(modelItem => item.Place)/kerala.jpg" onerror="imgError(this)" />
+
+                <img src="~/Content/Images/Images/@Html.ValueFor(modelItem => item.Place)/shimla.jpg" onerror="imgError(this)" />
+                <img src="~/Content/Images/Images/@Html.ValueFor(modelItem => item.Place)/kanyakumari.jpg" onerror="imgError(this)" />
+                <img src="~/Content/Images/Images/@Html.ValueFor(modelItem => item.Place)/darjeeling.jpg" onerror="imgError(this)" />
+                <img src="~/Content/Images/Images/@Html.ValueFor(modelItem => item.Place)/mysore.jpg" onerror="imgError(this)" />
+                <img src="~/Content/Images/Images/@Html.ValueFor(modelItem => item.Place)/rajasthan.jpg" onerror="imgError(this)" />
+            </div>
+            <h2 style="font-family: 'Book Antiqua'">@Html.DisplayFor(modelItem => item.Place)</h2>
+            <h4 style="font-family: 'Book Antiqua'">@Html.DisplayFor(modelItem => item.Duration)</h4>
+            @*<p style="font-family: 'Book Antiqua'">
+                @Html.DisplayFor(modelItem => item.Date)
+            </p>*@
+            <p style="margin-top:0.5cm">
+                <a class="btn-primary btn-lg" style="margin-right:1cm;font-family:'Book Antiqua'">Rs. @Html.DisplayFor(modelItem => item.TotalCost)</a>
+                <button class="btn-primary btn-lg" style="background-color:#B2EBF2;font-family:'Book Antiqua';height:40px;margin-top:0.3cm;">
+                    @if (Session["Role"].ToString() == "\"Admin\"")
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TripID },new {style="color:black"}) <span style="color:black;">|</span>
+                        @Html.ActionLink("Details", "Details", new { id = item.TripID }, new { style = "color:black" }) <span style="color:black;">|</span>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TripID }, new { style = "color:black" }) <span style="color:black;">&raquo;</span>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Details", "Details", new { id = item.TripID }, new { style = "color:black" }) <span style="color:black;">|</span>
+                        @Html.ActionLink("Book Now", "BookTrip", "Bookings", new { id = item.TripID },new { style = "color:black" })
+                    }
+                </button>
+
+            </p>
+            <p>
+
+            </p>
+        </div>
+        <script>
+            function imgError(image) {
+                var imageRow = image
+                var imageLabel = imageRow.nextElementSibling;
+                imageRow.parentNode.removeChild(imageRow);
+            }
+        </script>
+    }
+</body>

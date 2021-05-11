@@ -1,0 +1,226 @@
+﻿@*//QR CODE stays for 3 seconds and redirects to another action
+
+
+
+//temporary checking
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+<h2 style="margin-top:1cm">Booking Confirmed</h2>
+@Html.ActionLink("Processing payment....", "Success", "Bookings")*@
+
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+@*<h2>Payment</h2>*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            align-content: center;
+            background-image: url('../../Content/Images/bg9.jpeg');
+            margin-top:15cm;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            text-align: center;
+            padding-top: 100px; /* Location of the box */
+            width: 700px; /* Full width */
+            height: 900px; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+
+        #wrap {
+            margin-top: 50px;
+            text-align: center;
+            display: none;
+        }
+
+        #barwrap {
+            position: relative; /* to contain outer */
+            margin: 0 auto; /* to centre */
+            width: 250px;
+            height: 20px; /* size of our bar - required */
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid black;
+        }
+
+            #barwrap P { /* to contain text */
+                margin: 0; /* FF needs this or text drops below bar */
+                width: 250px; /* use this node to position text */
+                text-align: center;
+            }
+
+            #barwrap #outer { /* bar 'background' */
+                position: absolute;
+                width: 100%;
+                height: 100%; /* match parent size */
+                background: lightgreen;
+                color: green; /* original colour of text */
+            }
+
+            #barwrap #inner {
+                position: relative; /* otherwise outer hides us */
+                width: 0;
+                height: 100%; /* match parent */
+                overflow: hidden; /* to hide new text/prevent it wrapping */
+                background: green;
+                color: lightgreen; /* colour of changed text */
+            }
+    </style>
+</head>
+<body>
+
+    
+
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn" style="border:none;background-color:transparent"></button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>You have initiated the payment procedure...</p>
+            <img src="http://pngimg.com/uploads/qr_code/qr_code_PNG37.png" style="width: 300px;height: 300px;border: 1px solid black;padding: 5px;" /><br />
+            
+            <button id="pay" class="btn-primary btn-lg" style="background-color:#4CAF50;border-color:#4CAF50;margin-top:0.5cm" onClick='myFunction();'>Pay Now</button>
+            <div id='wrap'>
+                Payment in Progress:
+                <div id='barwrap'>
+                    <!-- P wrappers for text positioning -->
+                    <div id='outer'><p></p></div> <!-- original colour/text -->
+                    <div id='inner'><p></p></div> <!-- new colour/text -->
+                </div>
+
+                <br>
+            </div>
+
+        </div>
+    </div>
+    @*<div style="text-align: center; vertical-align: middle; line-height:50px; ">
+        <p style="background-color:#E8F5E9;border-color:#1B5E20;width:200px;height:60px;text-align:center ">Payment Successful<img src="https://www.flaticon.com/svg/vstatic/svg/845/845646.svg?token=exp=1619260490~hmac=cc44e57efa2f38e9e8b94aaa01700707" style="width:10px;height:10px;margin-left:0.2cm" /></p>
+    </div>*@
+    <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+        }
+
+        var time = 10000; // 10 secs
+        var steps = 50; // Five per second
+        var step = 1;
+
+        function myFunction() {
+            var v = document.getElementById("wrap");
+            if (v.style.display === "block") {
+                v.style.display = "none";
+            } else {
+                v.style.display = "block";
+            }
+            progress();
+        }
+        window.onload = function () {
+            document.getElementById('myBtn').click();
+            var scriptTag = document.createElement("script");
+            scriptTag.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
+            document.getElementsByTagName("head")[0].appendChild(scriptTag);
+        }
+        //window.onload = function () {
+        //    document.getElementById('pay').click();
+        //    var scriptTag = document.createElement("script");
+        //    scriptTag.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
+        //    document.getElementsByTagName("head")[0].appendChild(scriptTag);
+        //}
+        function progress() {
+            var bar = document.getElementById("barwrap");
+            var aStep = (bar.offsetWidth - 2) / steps;// 2px border removed from width
+            var x = Math.round(aStep * step);
+            var outer = document.getElementById("outer");
+            var inner = document.getElementById("inner");
+
+            // Work out seconds based on % progress from current step
+            var secs = ((time / 1000) - Math.floor((step / steps) * 10));
+
+            inner.style.width = x + "px";
+            step++;
+
+            // If 0 seconds, display waiting message instead
+            outer.firstChild.innerHTML = (secs ? secs + " seconds..." : "Please Wait...");
+            // Match text
+            inner.firstChild.innerHTML = outer.firstChild.innerHTML;
+
+            if (step > steps) redir();
+            else setTimeout("progress();", time / steps);
+        }
+
+        function redir() {
+            location.replace("https://localhost:44324/Bookings/Success")
+        }
+
+    </script>
+
+</body>
+</html>
